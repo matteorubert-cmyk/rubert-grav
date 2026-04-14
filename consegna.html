@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap Consegna Finale</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .step-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .step-card:hover {
+            border-color: #38bdf8;
+        }
+        .progress-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, #38bdf8, #818cf8);
+            transform: translateX(-50%);
+            z-index: -1;
+        }
+        .checkpoint {
+            width: 20px;
+            height: 20px;
+            background: #38bdf8;
+            border-radius: 50%;
+            border: 4px solid #0f172a;
+        }
+        .custom-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #38bdf8;
+            border-radius: 6px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .custom-checkbox.checked {
+            background: #38bdf8;
+        }
+        .custom-checkbox.checked::after {
+            content: '✓';
+            color: #0f172a;
+            font-weight: bold;
+        }
+        .deadline-badge {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header class="min-h-screen flex flex-col items-center justify-center text-center px-4 relative">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/20 rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-indigo-500/20 rounded-full blur-[120px]"></div>
+        </div>
+        
+        <div class="deadline-badge px-4 py-2 rounded-full text-sm font-bold mb-8 animate-pulse">
+            🗓️ Scadenza: 27 Maggio
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight animate-fade-in">
+            L'Elaborato <span class="gradient-text">Finale</span>
+        </h1>
+        <p class="text-lg md:text-xl text-slate-400 max-w-2xl mb-10 leading-relaxed">
+            Il tuo viaggio nel web design dell'ultimo anno sta per concludersi. Ecco la roadmap interattiva per completare e consegnare il tuo progetto entro i tempi previsti.
+        </p>
+        <div class="animate-bounce">
+            <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-6 py-20 relative">
+        <div class="progress-line" id="progressLine"></div>
+
+        <!-- Step 1: Il Progetto -->
+        <section class="mb-32 relative step-section">
+            <div class="flex items-center justify-center mb-10">
+                <div class="checkpoint shadow-[0_0_15px_#38bdf8]"></div>
+            </div>
+            <div class="step-card p-8 rounded-3xl">
+                <span class="text-blue-400 font-bold tracking-widest text-sm uppercase">Fase 01</span>
+                <h2 class="text-3xl font-bold mt-2 mb-4">Scegli la tua direzione</h2>
+                <div class="grid md:grid-cols-2 gap-6 mt-8">
+                    <div class="p-6 bg-slate-800/40 rounded-2xl border border-white/5">
+                        <h3 class="text-xl font-semibold mb-2 text-white">Sito Portfolio</h3>
+                        <p class="text-slate-400 text-sm">Presenta te stesso e le tue abilità.</p>
+                        <div class="mt-4 p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+                            <p class="text-blue-300 text-xs italic">💡 Suggerimento: Carica qui tutti i lavori ed esercitazioni fatti quest'anno!</p>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-slate-800/40 rounded-2xl border border-white/5">
+                        <h3 class="text-xl font-semibold mb-2 text-white">Progetto a Scelta</h3>
+                        <p class="text-slate-400 text-sm">Tema libero (e-commerce, blog, informativo).</p>
+                        <p class="mt-4 text-xs text-amber-400">⚠️ Richiede descrizione dettagliata degli obiettivi nel documento di consegna.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 2: Sviluppo e Hosting -->
+        <section class="mb-32 relative step-section">
+            <div class="flex items-center justify-center mb-10">
+                <div class="checkpoint"></div>
+            </div>
+            <div class="step-card p-8 rounded-3xl">
+                <span class="text-blue-400 font-bold tracking-widest text-sm uppercase">Fase 02</span>
+                <h2 class="text-3xl font-bold mt-2 mb-4">Sviluppo & Hosting</h2>
+                <p class="text-slate-400 mb-6">Il tuo codice deve vivere online. Segui la guida ufficiale per i passaggi tecnici.</p>
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-start">
+                        <span class="bg-blue-500/20 text-blue-400 p-1 rounded mr-3">✔</span>
+                        <span>Repository pubblico su <strong>GitHub</strong>.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-blue-500/20 text-blue-400 p-1 rounded mr-3">✔</span>
+                        <span>Sito live tramite <strong>GitHub Pages</strong>.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-blue-500/20 text-blue-400 p-1 rounded mr-3">✔</span>
+                        <span><strong>Relazione</strong> tecnica del lavoro svolto (tecnologie e design).</span>
+                    </li>
+                </ul>
+                <a href="https://matteorubert-cmyk.github.io/rubert-grav/" target="_blank" class="inline-flex items-center px-6 py-3 bg-slate-700 hover:bg-slate-600 rounded-xl transition font-semibold text-sm">
+                    📖 Leggi la Guida GitHub
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- Step 3: La Consegna -->
+        <section class="mb-32 relative step-section">
+            <div class="flex items-center justify-center mb-10">
+                <div class="checkpoint"></div>
+            </div>
+            <div class="step-card p-8 rounded-3xl border-2 border-indigo-500/30">
+                <span class="text-indigo-400 font-bold tracking-widest text-sm uppercase">Fase 03</span>
+                <h2 class="text-3xl font-bold mt-2 mb-4">Modalità di Consegna</h2>
+                <p class="text-slate-400 mb-6">Entro il <strong>27 maggio</strong>, completa la procedura nella cartella Drive condivisa.</p>
+                
+                <div class="space-y-6 mb-8">
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 shrink-0 bg-indigo-500/20 rounded-xl flex items-center justify-center text-indigo-400 font-bold text-xl">1</div>
+                        <div>
+                            <h4 class="font-bold text-white">Crea un Documento Google</h4>
+                            <p class="text-slate-400 text-sm">Crea un nuovo file <strong>Google Doc</strong> direttamente nella cartella di consegna.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 shrink-0 bg-indigo-500/20 rounded-xl flex items-center justify-center text-indigo-400 font-bold text-xl">2</div>
+                        <div>
+                            <h4 class="font-bold text-white">Rinomina: Nome_Cognome</h4>
+                            <p class="text-slate-400 text-sm">Assicurati che il file sia facilmente identificabile.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 shrink-0 bg-indigo-500/20 rounded-xl flex items-center justify-center text-indigo-400 font-bold text-xl">3</div>
+                        <div>
+                            <h4 class="font-bold text-white">Inserisci Link e Descrizione</h4>
+                            <p class="text-slate-400 text-sm">Incolla l'URL di GitHub Pages e scrivi una breve descrizione del tuo lavoro.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://drive.google.com/drive/folders/1NUqa0m0WOATEH5lhrGAt8Yz9VLeEFUQN?usp=drive_link" target="_blank" class="inline-flex items-center px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-2xl transition font-bold text-lg shadow-lg shadow-indigo-500/20">
+                    📂 Vai alla Cartella di Consegna
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- Step 4: Extra Policy -->
+        <section class="mb-32 relative step-section">
+            <div class="flex items-center justify-center mb-10">
+                <div class="checkpoint"></div>
+            </div>
+            <div class="step-card p-8 rounded-3xl">
+                <span class="text-emerald-400 font-bold tracking-widest text-sm uppercase">Bonus</span>
+                <h2 class="text-3xl font-bold mt-2 mb-4">Livello Pro: Legal Compliance</h2>
+                <div class="p-6 bg-emerald-500/5 border border-emerald-500/20 rounded-2xl">
+                    <p class="text-sm leading-relaxed text-slate-300">
+                        Per i più curiosi: analizzate quali dati raccoglie il vostro sito e provate a integrare una <strong>Privacy & Cookie Policy</strong> formale nel footer. Dimostra una comprensione completa di come funziona il web oggi.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Checklist Finale -->
+        <section class="py-20 text-center">
+            <h2 class="text-4xl font-bold mb-10 text-white">Checklist di Fine Lavoro</h2>
+            <div class="max-w-md mx-auto space-y-4 text-left">
+                <div class="flex items-center gap-4 bg-slate-800/50 p-4 rounded-xl border border-white/5 cursor-pointer hover:bg-slate-800 transition" onclick="toggleCheck(this)">
+                    <div class="custom-checkbox"></div>
+                    <span>Sito pubblicato entro il 27 Maggio</span>
+                </div>
+                <div class="flex items-center gap-4 bg-slate-800/50 p-4 rounded-xl border border-white/5 cursor-pointer hover:bg-slate-800 transition" onclick="toggleCheck(this)">
+                    <div class="custom-checkbox"></div>
+                    <span>Relazione tecnica completata</span>
+                </div>
+                <div class="flex items-center gap-4 bg-slate-800/50 p-4 rounded-xl border border-white/5 cursor-pointer hover:bg-slate-800 transition" onclick="toggleCheck(this)">
+                    <div class="custom-checkbox"></div>
+                    <span>Descrizione del sito pronta nel Doc</span>
+                </div>
+                <div class="flex items-center gap-4 bg-slate-800/50 p-4 rounded-xl border border-white/5 cursor-pointer hover:bg-slate-800 transition" onclick="toggleCheck(this)">
+                    <div class="custom-checkbox"></div>
+                    <span>Documento Google creato in cartella</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-20 text-center text-slate-500 border-t border-white/5">
+        <p>Progetto Finale di Web Design • Deadline 27/05</p>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animazione step cards
+        gsap.utils.toArray('.step-section').forEach((section, i) => {
+            gsap.from(section.querySelector('.step-card'), {
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+
+            gsap.from(section.querySelector('.checkpoint'), {
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%",
+                },
+                scale: 0,
+                duration: 0.5,
+                ease: "back.out(1.7)"
+            });
+        });
+
+        // Linea di progresso dinamica
+        gsap.from("#progressLine", {
+            scrollTrigger: {
+                trigger: "main",
+                start: "top 50%",
+                end: "bottom 50%",
+                scrub: true
+            },
+            scaleY: 0,
+            transformOrigin: "top"
+        });
+
+        // Funzione per la checklist
+        function toggleCheck(el) {
+            const checkbox = el.querySelector('.custom-checkbox');
+            checkbox.classList.toggle('checked');
+            if(checkbox.classList.contains('checked')) {
+                el.classList.add('opacity-50');
+            } else {
+                el.classList.remove('opacity-50');
+            }
+        }
+    </script>
+</body>
+</html>
